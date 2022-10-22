@@ -7,9 +7,12 @@ const cookieParser = require("cookie-parser");
 /** end external imports */
 
 
-/** start external imports */
-const {notFoundHandler,errorHandler} = require("./middlewares/common/errorHandlerMiddleware")
-/** end external imports */
+/** start internal imports */
+const {notFoundHandler,errorHandler} = require("./middlewares/common/errorHandlerMiddleware");
+const loginRouter = require("./router/loginRouter");
+const inboxRouter = require("./router/inboxRouter");
+const usersRouter = require("./router/usersRouter");
+/** end internal imports */
 
 
 /** main express application create */
@@ -44,7 +47,11 @@ app.use(express.static(path.join(__dirname,"public")));
 /** cookie parser */
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
-/** routing setup */
+/** start routing setup */
+app.use("/",loginRouter);
+app.use("/inbox",inboxRouter);
+app.use("/users",usersRouter);
+/** end routing setup */
 
 
 /** 404 not found error handling */
