@@ -1,5 +1,5 @@
 function loginForm(req,res,next){
-    res.render("login",{
+    res.render("index",{ //index is view file name
         title:"Login Chat Application"
     });
 }
