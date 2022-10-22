@@ -1,6 +1,18 @@
+/** start external imports */
 const express = require("express");
-const loginRouter = express.Router();
+/** end external imports */
 
 
+/** start internal imports */
+const {loginForm} = require("../controller/LoginController");
+/** end internal imports */
 
-module.exports = loginRouter;
+
+/** create router */
+const router = express.Router();
+
+/** Route List */
+router.get("/",loginForm);
+
+
+module.exports = router;
