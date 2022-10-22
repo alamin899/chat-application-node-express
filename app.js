@@ -1,7 +1,16 @@
+/** start external imports */
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const path = require("path");
+const cookieParser = require("cookie-parser");
+/** end external imports */
+
+
+/** start external imports */
+const {notFoundHandler,errorHandler} = require("./middlewares/common/errorHandlerMiddleware")
+/** end external imports */
+
 
 /** main express application create */
 const app = express();
@@ -32,4 +41,19 @@ app.set("view engine","ejs");  //here 1st parameter is express property table va
 /** set static folder for css js and image */
 app.use(express.static(path.join(__dirname,"public")));
 
+/** cookie parser */
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
+/** routing setup */
+
+
+/** 404 not found error handling */
+app.use(notFoundHandler);
+
+/** common error handling */
+app.use(errorHandler);
+
+/** application listening */
+app.listen(process.env.PORT,()=>{
+  console.log(`app listening to port ${process.env.PORT}`);
+})
