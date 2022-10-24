@@ -17,8 +17,8 @@ function loginForm(req,res,next){
 async function login(req,res,next){
     try {
         const user = await User.findOne({
-            $or:[{email:req.body.username,mobile:req.body.username}]
-        });
+            $or: [{ email: req.body.username }, { mobile: req.body.username }],
+          });
 
         if(user && user._id){
             const isValidPassword = await bcrypt.compare(req.body.password,user.password);
@@ -31,7 +31,7 @@ async function login(req,res,next){
                     email: user.email,
                     role: user.role,
                 };
-
+                    
                 // generate token
                 const token = jwt.sign(userObject, process.env.JWT_SECRET, {
                     expiresIn: process.env.JWT_EXPIRY,
@@ -62,7 +62,7 @@ async function login(req,res,next){
             },
             errors: {        // this is error message all error we will send this formate
               common: {
-                msg: err.message,
+                msg: error.message,
               },
             },
           });
@@ -70,6 +70,13 @@ async function login(req,res,next){
 }
 
 
+/** logout */
+function logout(req,res,next){
+    res.clearCookie(process.env.COOKIE_NAME);
+    res.send("logged out");
+}
+
+
 module.exports ={
-    loginForm,login
+    loginForm,login,logout
 }

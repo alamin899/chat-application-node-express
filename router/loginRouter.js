@@ -4,9 +4,9 @@ const express = require("express");
 
 
 /** start internal imports */
-const {loginForm} = require("../controller/LoginController");
+const {loginForm,login,logout} = require("../controller/LoginController");
 const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponse");
-const {doLoginValidators,doLoginValidationHandler} = require("../middlewares/login/loginValidators");
+const {loginValidators,loginValidationHandler} = require("../middlewares/login/loginValidator");
 /** end internal imports */
 
 const page_title = "Login";
@@ -18,6 +18,10 @@ const router = express.Router();
 router.get("/",decorateHtmlResponse(page_title),loginForm); //decorateHtmlResponse("Login") this is for title set and local.html = true
 
 /** Process login route */
-router.post("/",decorateHtmlResponse(page_title),doLoginValidators,doLoginValidationHandler,login);
+router.post("/",decorateHtmlResponse(page_title),loginValidators,loginValidationHandler,login);
+
+
+/** logout router */ 
+router.delete("/", logout);
 
 module.exports = router;
