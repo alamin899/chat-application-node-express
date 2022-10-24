@@ -5,7 +5,7 @@ const express = require("express");
 
 /** start internal imports */
 const {loginForm} = require("../controller/LoginController");
-const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponseMiddleware")
+const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponse")
 /** end internal imports */
 
 
