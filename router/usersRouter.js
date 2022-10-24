@@ -1,20 +1,35 @@
-/** start external imports */
+// external imports
 const express = require("express");
-/** end external imports */
+const { check } = require("express-validator");
 
+// internal imports
+const {
+  getUsers,
+  addUser,
+  removeUser,
+} = require("../controller/usersController");
+const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponse");
+const avatarUpload = require("../middlewares/users/avatarUpload");
+const {
+  addUserValidators,
+  addUserValidationHandler,
+} = require("../middlewares/users/userValidators");
 
-/** start internal imports */
-const {getUsers} = require("../controller/UsersController");
-const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponseMiddleware")
-/** end internal imports */
-
-
-/** create router and use in app.js file for get globally */
 const router = express.Router();
 
-/** Route List */
-router.get("/",decorateHtmlResponse("Users"),getUsers); //decorateHtmlResponse("Login") this is for title set and local.html = true
+// users page
+router.get("/", decorateHtmlResponse("Users"), getUsers);
 
+// add user
+router.post(
+  "/",
+  avatarUpload,
+  addUserValidators,
+  addUserValidationHandler,
+  addUser
+);
 
+// remove user
+router.delete("/:id", removeUser);
 
 module.exports = router;
