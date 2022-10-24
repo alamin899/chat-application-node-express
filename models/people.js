@@ -30,7 +30,7 @@ const peopleSchema = mongoose.Schema({
     },
 },
 {
-    timestamps:true  //schema method second parameter timestamps true means created_at and updated_at automatic set
+    timestamps:true  //mongoose.Schema() method second parameter timestamps true means created_at and updated_at automatic set
 }
 );
 
