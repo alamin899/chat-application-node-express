@@ -1,11 +1,13 @@
-// external imports
+/** start external imports */
 const { check, validationResult } = require("express-validator");
 const createError = require("http-errors");
 const path = require("path");
 const { unlink } = require("fs");
+/** end external imports */
 
-// internal imports
+/** start internal imports */
 const User = require("../../models/People");
+/** start external imports */
 
 // add user
 const addUserValidators = [
