@@ -7,6 +7,15 @@ function decorateHtmlResponse(page_title) {
     return function (req, res, next) {
       res.locals.html = true;
       res.locals.title = `${page_title} - ${process.env.APP_NAME}`;
+
+      /** amra logged in er por nicher agula variable pathiyechi controller theke
+       * tai jehetu ata first middleware default hisebe empty object rekhay diyechi
+       * jate kore error na hoy
+       */
+      res.locals.loggedInUser = {};
+      res.locals.errors = {};
+      res.locals.data = {};
+      
       next();
     };
   }

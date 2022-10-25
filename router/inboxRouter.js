@@ -5,7 +5,8 @@ const express = require("express");
 
 /** start internal imports */
 const {inboxForm} = require("../controller/InboxController");
-const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponse")
+const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponse");
+const {checkLogin} = require("../middlewares/common/checkLogin");
 /** end internal imports */
 
 
@@ -13,7 +14,7 @@ const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponse
 const router = express.Router();
 
 /** Route List */
-router.get("/",decorateHtmlResponse("Inbox"),inboxForm); // decorateHtmlResponse("Inbox") this is for title set and local.html = true
+router.get("/",decorateHtmlResponse("Inbox"),checkLogin,inboxForm); // decorateHtmlResponse("Inbox") this is for title set and local.html = true
 
 
 module.exports = router;
