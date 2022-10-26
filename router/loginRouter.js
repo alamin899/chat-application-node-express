@@ -17,8 +17,9 @@ const router = express.Router();
 
 /** Route List
  * redirectLoggedIn middleware if already logged in then it will redirect to inbox route(dashboard route)
+ * decorateHtmlResponse("Login") this is for title set and local.html=true
  */
-router.get("/",decorateHtmlResponse(page_title),redirectLoggedIn,loginForm); //decorateHtmlResponse("Login") this is for title set and local.html = true
+router.get("/",decorateHtmlResponse(page_title),redirectLoggedIn,loginForm);
 
 /** Process login route */
 router.post("/",decorateHtmlResponse(page_title),loginValidators,loginValidationHandler,login);
