@@ -40,7 +40,7 @@
     </div>
     <%- include('./partials/add-user-modal.ejs'); %>
 
-    <script>
+     <script>
         // toasts
         const deleteToast = Toastify({
             text: "User was deleted successfully!",
@@ -51,7 +51,7 @@
             duration: 3000,
         });
         
-        // delete user function
+        /** delete user function */
         async function deleteUser(userId) {
           let confirmationMessage = confirm("Are you sure you want to delete?");
             if(confirmationMessage){
